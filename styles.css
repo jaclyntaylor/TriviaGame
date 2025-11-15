@@ -1,0 +1,113 @@
+/* Reset-ish */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* Page layout */
+html, body { height: 100%; font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background: #0f172a; color: #e6eef8; }
+
+.app {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.title {
+  font-size: 1.75rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+.subtitle {
+  color: #9fb0d6;
+  font-size: 0.95rem;
+}
+
+/* Game card */
+.game {
+  width: min(720px, 96%);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(2,6,23,0.7);
+}
+
+/* Question area */
+.question {
+  min-height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1.25rem;
+  line-height: 1.35;
+  background: rgba(255,255,255,0.02);
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  color: #f3f7ff;
+}
+
+/* Controls */
+.controls {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+.btn {
+  border: none;
+  padding: 0.9rem 1.6rem;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  min-width: 120px;
+  font-weight: 600;
+  transition: transform 120ms ease, box-shadow 120ms ease;
+  box-shadow: 0 6px 18px rgba(2,6,23,0.45);
+}
+.btn:active { transform: translateY(2px) scale(0.995); }
+
+/* True / False color schemes */
+.btn.true {
+  background: linear-gradient(180deg, #1ecf7a, #15a85c);
+  color: #04210f;
+}
+.btn.false {
+  background: linear-gradient(180deg, #ff6b6b, #e64545);
+  color: #2a0b0b;
+}
+
+/* Focus styles for accessibility */
+.btn:focus {
+  outline: 3px solid rgba(255,255,255,0.12);
+  outline-offset: 3px;
+}
+
+/* Feedback and status */
+.feedback {
+  min-height: 28px;
+  text-align: center;
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+.status {
+  display: flex;
+  justify-content: space-between;
+  color: #9fb0d6;
+  font-size: 0.95rem;
+}
+
+/* Footer */
+.footer {
+  margin-top: 1.25rem;
+  color: #8ea2c8;
+  font-size: 0.85rem;
+  text-align: center;
+}
