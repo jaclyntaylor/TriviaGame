@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,6 +9,7 @@
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios@1.13.2/dist/axios.min.js"></script>
 </head>
+
 <body>
   <main class="app">
     <header class="header">
@@ -29,7 +31,47 @@
   </main>
 
   <script>
+    // get questions and load to local storage
+    const getQuestionsAndLoadLocalStorage = async () => {
+      let {data} = await axios.get("https://opentdb.com/api.php?amount=10&type=boolean");
+      localStorage.setItem("trivia", JSON.stringify(data.results));
+
+    }
+    // grab questions from storage and display and set correct answer
+    const getQuestionFromStorage = async () => {
+      // check if there are questions left. If not grab new ones
+      if (!localStorage.getItem("trivia")) {
+        await getQuestionsAndLoadLocalStorage();
+      }
+      //grab the questions and set correct answer and display
+      let questions = JSON.parse(localStorage.getItem("trivia"));
+      let(question, correct_answer) = questions.pop();
+      // reset local storage based on reamin questions
+      if (questions.length <= 0) {
+        localStorage.removeItem("trivia");
+      } else {
+        localStorage.setItem("trivia", JSON.stringify(questions));
+      }
+      //set correct answer and siplay question
+      sessionStorage.setItem("correct answer", correct_answer);
+      $("#question").html(question);
+
+    }
+
+    const checkAnswer = (e) => {
+      // check if button has the correct text
+      if (e.target.innerText === sessionStorage.getItem("correct answer")) {
+        alert("Correct!");
+        getQuestionFromStorage();
+      } else {
+        alert("Try Again!");
+      }
+    }
+    // add event listeners to buttons
+    $("#trueBtn").click(checkAnswer);
+    $("#falseBtn").click(checkAnswer);
 
   </script>
 </body>
+
 </html>
